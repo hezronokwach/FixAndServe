@@ -38,12 +38,8 @@ def create(request):
             )
             service.save()
             return redirect('services_list')
-        else:
-            print(form.errors)
     else:
         form = CreateNewService()
-        print("Form field choices:", form.fields['field'].choices)  # Debug line
-
     return render(request, 'services/create.html', {'form': form})
 
 def service_field(request, field):
