@@ -1,0 +1,54 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Virtual Environment
+venv/
+env/
+netEnv/
+.env
+
+# IDE - VSCode
+.vscode/
+*.code-workspace
+.history/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Coverage/Testing
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Misc
+*.swp
+*.bak
+*.tmp
+*.pid
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Dependencies
+node_modules/
+package-lock.json
