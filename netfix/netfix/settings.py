@@ -126,9 +126,10 @@ USE_TZ = True
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Static files (CSS, JavaScript, Images)
+# Static files settings
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Add the root static folder to STATICFILES_DIRS
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
