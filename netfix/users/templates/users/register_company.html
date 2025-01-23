@@ -1,13 +1,47 @@
-{% extends 'main/base.html' %} 
-{% block title %}
-  Company Registration
-{%endblock %}
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Company Registration{% endblock %}
+
+{% block extra_head %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'users/css/auth.css' %}">
+{% endblock %}
 
 {% block content %}
-    <form method="POST">
+<div class="auth-container">
+    <div class="auth-header">
+        <h2>Company Registration</h2>
+        <p>Create your company account to start providing services</p>
+    </div>
+    
+    <form method="POST" class="auth-form">
         {% csrf_token %}
-        {{form}}
-        <span class="helptext">Choose Field Above</span>
-        <button type="submit" name="register">Register</button>
+        
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+            <small class="helptext">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+            <ul class="errorlist">
+                <li>{{ error }}</li>
+            </ul>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        
+        <button type="submit" class="btn btn-primary">Register Company</button>
     </form>
+    
+    <div class="auth-links">
+        <p>Already have an account? <a href="{% url 'login_user' %}">Login here</a></p>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
