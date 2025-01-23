@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 
 from users.models import Company, Customer, User
 
@@ -17,9 +19,32 @@ def index(request, id):
     return render(request, 'services/single_service.html', {'service': service})
 
 
+@login_required
 def create(request):
-    return render(request, 'services/create.html', {})
+    if request.method == 'POST':
+        form = CreateNewService(request.POST)
+        company = request.user.company
+        if form.is_valid():
+            if company.field != 'All in One' and company.field != form.cleaned_data['field']:
+                form.add_error('field', 'You can only create services in your field of work.')
+                return render(request, 'services/create.html', {'form': form})
+            
+            service = Service(
+                company=company,
+                name=form.cleaned_data['name'],
+                description=form.cleaned_data['description'],
+                price_hour=form.cleaned_data['price_hour'],
+                field=form.cleaned_data['field'],
+            )
+            service.save()
+            return redirect('services_list')
+        else:
+            print(form.errors)
+    else:
+        form = CreateNewService()
+        print("Form field choices:", form.fields['field'].choices)  # Debug line
 
+    return render(request, 'services/create.html', {'form': form})
 
 def service_field(request, field):
     # search for the service present in the url

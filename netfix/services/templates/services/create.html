@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+{% block title %}
+    Create New Service
+{% endblock %}
+
+{% block content %}
+    <style>
+        select {
+            width: 200px;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+            color: black;
+        }
+        select option {
+            padding: 8px;
+            background-color: white;
+            color: black;
+        }
+    </style>
+
+    <h1>Create New Service</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.name.label }}: {{ form.name }}<br>
+        {{ form.description.label }}: {{ form.description }}<br>
+        {{ form.price_hour.label }}: {{ form.price_hour }}<br>
+        <label for="id_field">Field:</label>
+        {{ form.field }}<br>
+        
+        <button type="submit">Create Service</button>
+    </form>
+
+    <!-- Debug information -->
+    {% if form.field.field.choices %}
+        <div style="display:none;">
+            Available choices:
+            {% for value, label in form.field.field.choices %}
+                {{ value }} - {{ label }},
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
