@@ -1,0 +1,52 @@
+The website should contain two types of users:
+
+    Company: that can create new services
+    Customer: that can request existing services
+
+Both users should be able to register and login. In order to login, users should enter the email and the password to do so. However, to register, each type of user has to provide different information:
+
+    Customer:
+        email
+        password
+        password confirmation
+        username
+        date of birth
+    Company:
+        email
+        password
+        password confirmation
+        username
+        field of work
+
+    Each user should have a unique email and username. So while registering a user should be alerted if the email and/or username has already been registered.
+
+Every user should have his own profile page in which their information should be displayed (apart from the password, obviously). And, in case the user is a customer, all previous requested services have to be displayed as well. In case of a company profile, along with all their information, should also be present the services it provides.
+
+The field of work attribute in the companies will restrict the kind of services it can provide. The field of work attribute should only accept these values:
+
+    Air Conditioner
+    All in One
+    Carpentry
+    Electricity
+    Gardening
+    Home Machines
+    Housekeeping
+    Interior Design
+    Locks
+    Painting
+    Plumbing
+    Water Heaters
+
+A Carpentry company can only create carpentry services as a Housekeeping company can only provide housekeeping services. However, the All in One companies can create any kind of services. But what does a service include? A service must have:
+
+    name
+    description
+    field (can have the same categories of fields as the companies, except you can not have an All in One service)
+    price per hour
+    date it was created (this attribute should automatically take a value when creating a service)
+
+The website should have a page displaying the most requested services. There should also be a page showing every service in creation order (last created first) and a page for every service category, which displays the services available for that category.
+
+Every service should have its own page, in which should be displayed the above information and also the company name that provides this service. A user should be able to check every service from that company by clicking on the name displayed and seeing the company profile.
+
+Once a service is created by a company, every user has access to it. Only customers can request a service by providing the address where the service is required and the service time (in hours) needed for the service to be completed. Once a customer requires a service, it gets added to the list of previously requested services. In this list, for each service requested, the customer can see the service name, service field, calculated service cost, the date in which the service was requested and the company who provided the service.
