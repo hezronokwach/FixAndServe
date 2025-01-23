@@ -2,6 +2,12 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
+from django.core.paginator import Paginator
+import logging
+from django.conf import settings  # Add this import
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG)
 
 from users.models import Company, Customer, User
 
@@ -10,8 +16,31 @@ from .forms import CreateNewService, RequestServiceForm
 
 
 def service_list(request):
-    services = Service.objects.all().order_by("-date")
-    return render(request, 'services/list.html', {'services': services})
+    logger.debug("Entering service_list view")
+    
+    try:
+        services = Service.objects.all().order_by('-date')
+        logger.debug(f"Found {services.count()} total services")
+        
+        # Log each service for debugging
+        for service in services:
+            logger.debug(f"Service: {service.name} (ID: {service.id})")
+            
+        paginator = Paginator(services, 9)
+        page = request.GET.get('page')
+        services = paginator.get_page(page)
+        
+        context = {
+            'services': services,
+            'debug': True  # Simplified debug flag
+        }
+        
+        return render(request, 'services/list.html', context)
+        
+    except Exception as e:
+        logger.error(f"Error in service_list: {str(e)}")
+        logger.exception("Full traceback:")
+        raise
 
 
 def index(request, id):
@@ -21,6 +50,7 @@ def index(request, id):
 
 @login_required
 def create(request):
+    logger.debug("Entering create service view")
     if request.method == 'POST':
         form = CreateNewService(request.POST)
         company = request.user.company
@@ -37,7 +67,7 @@ def create(request):
                 field=form.cleaned_data['field'],
             )
             service.save()
-            return redirect('services_list')
+            return redirect('service_list')
     else:
         form = CreateNewService()
     return render(request, 'services/create.html', {'form': form})

@@ -1,0 +1,150 @@
+.services-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.create-service-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #ec2f00;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.create-service-btn:hover {
+    background: #d42a00;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.service-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.service-card h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.service-card p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.view-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.view-btn:hover {
+    background: #0056b3;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #ec2f00;
+}
+
+.pagination .active {
+    background: #ec2f00;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.no-services {
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+    padding: 40px 0;
+}
+
+.services-list {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+.service-item {
+    padding: 15px 0;
+}
+
+.service-details {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.service-name {
+    color: #ec2f00;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.service-name:hover {
+    text-decoration: underline;
+}
+
+.field {
+    color: #666;
+}
+
+.price {
+    font-weight: bold;
+    color: #333;
+}
+
+.provider {
+    margin-left: auto;
+    color: #666;
+}
+
+.company-link {
+    color: #ec2f00;
+    text-decoration: none;
+}
+
+.company-link:hover {
+    text-decoration: underline;
+}
+
+.divider {
+    height: 1px;
+    background: #eee;
+    margin: 0;
+}
