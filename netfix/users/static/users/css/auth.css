@@ -87,3 +87,120 @@
     margin-top: 5px;
     display: block;
 }
+
+/* Profile Styles */
+.profile-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.profile-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info h1 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.user-info p {
+    margin: 0.5rem 0;
+    color: #7f8c8d;
+}
+
+.user-type {
+    padding: 0.5rem 1rem;
+    background: #3498db;
+    color: white;
+    border-radius: 4px;
+}
+
+.services-section {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.services-section h2 {
+    padding: 1.5rem;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    color: #2c3e50;
+}
+
+.service-item {
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.service-item:hover {
+    background-color: #f8f9fa;
+}
+
+.service-item:last-child {
+    border-bottom: none;
+}
+
+.service-details {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.service-name {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 500;
+    flex: 1;
+}
+
+.service-name:hover {
+    color: #3498db;
+}
+
+.service-field {
+    color: #7f8c8d;
+    min-width: 120px;
+}
+
+.service-cost {
+    color: #27ae60;
+    font-weight: bold;
+    min-width: 100px;
+}
+
+.service-date {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.service-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.status-pending { background: #f1c40f; color: white; }
+.status-accepted { background: #3498db; color: white; }
+.status-completed { background: #27ae60; color: white; }
+.status-cancelled { background: #e74c3c; color: white; }
+
+.company-link {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.company-link:hover {
+    text-decoration: underline;
+}

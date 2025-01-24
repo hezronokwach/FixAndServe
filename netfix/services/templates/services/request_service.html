@@ -1,11 +1,60 @@
 {% extends 'main/base.html' %}
-{% block title %}
-    Request Service
+{% load static %}
+
+{% block title %}Request Service{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'services/css/service.css' %}">
 {% endblock %}
 
 {% block content %}
-    <p class="title">Service Request Details</p>
-    <form method="POST">
-        <button type="submit">Request</button>
+<div class="request-service-container">
+    <div class="service-info">
+        <h2 class="service-name">{{ service.name }}</h2>
+        <div class="service-details">
+            <p>{{ service.description }}</p>
+            <p>Field: {{ service.field }}</p>
+            <p>Provider: <a href="{% url 'company_profile' service.company.user.username %}">{{ service.company.user.username }}</a></p>
+            <p class="price">${{ service.price_hour }}/hour</p>
+        </div>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="alert alert-danger">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div id="total-cost" class="total-cost">
+            Estimated Total: $<span id="cost-value">0.00</span>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Request</button>
     </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hoursInput = document.getElementById('id_hours_needed');
+        const pricePerHour = parseFloat('{{ service.price_hour }}');
+        
+        function updateTotal() {
+            const hours = parseFloat(hoursInput.value) || 0;
+            const total = (hours * pricePerHour).toFixed(2);
+            document.getElementById('cost-value').textContent = total;
+        }
+        
+        hoursInput.addEventListener('input', updateTotal);
+        // Calculate initial total
+        updateTotal();
+    });
+</script>
 {% endblock %}

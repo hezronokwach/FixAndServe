@@ -56,3 +56,59 @@ select.form-control {
     font-size: 14px;
     margin-top: 5px;
 }
+
+/* Request Service Styles */
+.request-service-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.service-info {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.service-name {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.service-details {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.price {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.submit-btn {
+    background: #3498db;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: #2980b9;
+}
+
+.total-cost {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    font-size: 1.1rem;
+    font-weight: bold;
+}

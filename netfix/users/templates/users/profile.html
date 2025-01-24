@@ -1,45 +1,68 @@
 {% extends 'main/base.html' %}
-{% block title %}
-    User Profile
+{% load static %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/css/auth.css' %}">
 {% endblock %}
 
 {% block content %}
-    {% if user.is_customer %}
-        <div style="display: ruby;">
-            <h1>{{ user.username }} ({{user_age}} y/o)</h1>
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="user-info">
+            <h1>{{ user.username }}{% if user.is_customer %} ({{ user_age }} y/o){% endif %}</h1>
             <p>{{ user.email }}</p>
-            <p style="float: right;">Customer</p>
         </div>
-    {% else %}
-        <div style="display: ruby;">
-            <h1>{{ user.username }}</h1>
-            <p> {{ user.email }}</p>
-            <p style="float: right;">{{user.company.field}} Company</p>
+        <div class="user-type">
+            {% if user.is_customer %}
+                Customer
+            {% else %}
+                {{ user.company.field }} Company
+            {% endif %}
         </div>
-       {% endif %}
-    {% if 'customer' in request.path %}
-        <p class="title">Previous Requested Services</p>
-    {% else %}
-        <p class="title">Available Services</p>
-    {% endif %}
-    {% if user.is_customer %}
-        {% for service in sh %}
-            <div>
-                <a href="/services/{{service.service.id}}">{{service.service.name}}</a> ({{service.service.field}})
-                <p style="margin: 0; display: inline-block;"> ❱❱ {{service.price}}</p>
-                <p style="margin: 0; display: inline-block;"> ❱❱ {{ service.request_date }}</p>
-                <p style="float: right; margin: 0;">
-                    by <a href="/company/{{service.service.company.user}}">{{service.service.company.user}}</a>
-                </p> 
-            </div>
-            <div class="line"></div>
-        {% endfor %}
-    {% else %}
-        {% for service in services %}
-        <div class="list_services_profile">
-            <a href="/services/{{service.id}}">{{service.name}}</a>-- {{service.price_hour}}€/hour
-            <div class="line"></div>
-        </div>
-        {% endfor %}
-    {% endif %}
+    </div>
+
+    <div class="services-section">
+        {% if user.is_customer %}
+            <h2>Previous Requested Services</h2>
+            {% if sh %}
+                {% for service in sh %}
+                    <div class="service-item">
+                        <div class="service-details">
+                            <a href="{% url 'index' service.service.id %}" class="service-name">{{ service.service.name }}</a>
+                            <span class="service-field">{{ service.service.field }}</span>
+                            <span class="service-cost">${{ service.total_cost }}</span>
+                            <span class="service-date">{{ service.request_date|date:"M d, Y" }}</span>
+                            <span class="service-status status-{{ service.status }}">{{ service.status|title }}</span>
+                            <span>by <a href="{% url 'company_profile' service.service.company.user.username %}" class="company-link">{{ service.service.company.user.username }}</a></span>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="service-item">
+                    <p>No services requested yet.</p>
+                </div>
+            {% endif %}
+        {% else %}
+            <h2>Available Services</h2>
+            {% if services %}
+                {% for service in services %}
+                    <div class="service-item">
+                        <div class="service-details">
+                            <a href="{% url 'index' service.id %}" class="service-name">{{ service.name }}</a>
+                            <span class="service-field">{{ service.field }}</span>
+                            <span class="service-cost">${{ service.price_hour }}/hour</span>
+                            <span class="service-date">Created: {{ service.date|date:"M d, Y" }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="service-item">
+                    <p>No services available.</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
