@@ -66,29 +66,32 @@ select.form-control {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-
 .service-info {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid #eee;
 }
-
 .service-name {
     font-size: 1.5rem;
     color: #2c3e50;
     margin-bottom: 0.5rem;
 }
-
 .service-details {
     color: #7f8c8d;
     font-size: 0.9rem;
 }
-
 .price {
     color: #27ae60;
     font-weight: bold;
 }
-
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
 .submit-btn {
     background: #3498db;
     color: white;
@@ -100,11 +103,9 @@ select.form-control {
     font-size: 1rem;
     transition: background 0.2s;
 }
-
 .submit-btn:hover {
     background: #2980b9;
 }
-
 .total-cost {
     margin-top: 1rem;
     padding-top: 1rem;

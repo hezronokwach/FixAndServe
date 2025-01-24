@@ -42,19 +42,12 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const hoursInput = document.getElementById('id_hours_needed');
+    // Calculate and update total cost when hours change
+    document.getElementById('id_hours_needed').addEventListener('input', function() {
+        const hours = parseFloat(this.value) || 0;
         const pricePerHour = parseFloat('{{ service.price_hour }}');
-        
-        function updateTotal() {
-            const hours = parseFloat(hoursInput.value) || 0;
-            const total = (hours * pricePerHour).toFixed(2);
-            document.getElementById('cost-value').textContent = total;
-        }
-        
-        hoursInput.addEventListener('input', updateTotal);
-        // Calculate initial total
-        updateTotal();
+        const total = (hours * pricePerHour).toFixed(2);
+        document.getElementById('cost-value').textContent = total;
     });
 </script>
 {% endblock %}
