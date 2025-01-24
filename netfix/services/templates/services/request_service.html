@@ -45,7 +45,8 @@
     // Calculate and update total cost when hours change
     document.getElementById('id_hours_needed').addEventListener('input', function() {
         const hours = parseFloat(this.value) || 0;
-        const pricePerHour = parseFloat('{{ service.price_hour }}');
+        // Convert price to float since it comes as string from template
+        const pricePerHour = parseFloat('{{ service.price_hour }}'.replace(/[^0-9.-]+/g,""));
         const total = (hours * pricePerHour).toFixed(2);
         document.getElementById('cost-value').textContent = total;
     });

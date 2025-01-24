@@ -53,8 +53,11 @@ class ServiceRequest(models.Model):
         ordering = ['-request_date']
 
     def save(self, *args, **kwargs):
-        # Calculate total cost before saving
-        self.total_cost = self.service.price_hour * self.hours_needed
+        # Convert both to Decimal to ensure precise calculation
+        from decimal import Decimal
+        price = Decimal(str(self.service.price_hour))
+        hours = Decimal(str(self.hours_needed))
+        self.total_cost = price * hours
         super().save(*args, **kwargs)
 
     def __str__(self):

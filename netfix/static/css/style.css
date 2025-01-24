@@ -28,15 +28,21 @@ body {
     background-color: var(--soft-white);
 }
 
-/* Navbar Styles */
+/* Navbar and Dropdown Styles */
 .navbar {
-    background-color: var(--deep-blue);
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #e7e7e7;
+    padding: 0.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    position: sticky;
+    top: 15px;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border: 2px solid white;
+    border-radius: 30px;
+    box-shadow: inset 1px -1px 10px rgb(116, 116, 116);
 }
 
 .nav-left, .nav-right {
@@ -45,28 +51,29 @@ body {
 }
 
 .nav-menu {
-    list-style: none;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    list-style: none;
     margin: 0;
     padding: 0;
+    gap: 1.5rem;
 }
 
 .nav-link {
-    color: white;
+    color: #ec2f00;
     text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 5px;
     transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-    color: var(--light-gray);
+    background: #ec4138;
+    color: #f9f8fd;
 }
 
-/* Dropdown Menu */
+/* Dropdown styles */
 .dropdown {
     position: relative;
 }
@@ -76,13 +83,14 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: white;
-    min-width: 200px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    border-radius: 4px;
-    z-index: 1000;
-    list-style: none;
+    background: #ffa91b;
+    border: 2px solid #f7c833;
+    border-right: 2px solid #f89329;
+    border-bottom: 2px solid #f89329;
+    border-radius: 5px;
     padding: 0.5rem 0;
+    min-width: 200px;
+    z-index: 1000;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -90,43 +98,51 @@ body {
 }
 
 .dropdown-menu a {
-    color: var(--charcoal-gray);
+    color: #f9f8fd;
     padding: 0.5rem 1rem;
     display: block;
-    text-decoration: none;
-    transition: all 0.3s ease;
 }
 
 .dropdown-menu a:hover {
-    background-color: var(--soft-white);
-    color: var(--deep-blue);
+    background: rgba(0,0,0,0.1);
 }
 
-/* Auth Buttons */
+/* Auth button styles */
+.btn-login, .btn-signup, .btn-logout {
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
 .btn-login {
-    background-color: transparent;
-    border: 2px solid white;
+    background: transparent;
+    border: 2px solid #ec2f00;
+    color: #ec2f00;
 }
 
 .btn-login:hover {
-    background-color: white;
-    color: var(--deep-blue);
+    background: #ec4138;
+    color: #f9f8fd;
 }
 
 .btn-signup {
-    background-color: var(--warm-orange);
+    background: #ec2f00;
+    color: #f9f8fd;
+    margin-left: 1rem;
 }
 
 .btn-signup:hover {
-    background-color: #e67819;
+    background: #ec4138;
 }
 
 .btn-logout {
-    background-color: var(--charcoal-gray);
+    background: #ec2f00;
+    color: #f9f8fd;
 }
 
 .btn-logout:hover {
-    background-color: #292c30;
+    background: #ec4138;
 }
 
 /* Typography */
@@ -283,44 +299,18 @@ nav a:hover {
         padding: 1rem;
     }
 
-    .nav-menu {
-        flex-direction: column;
+    .nav-left, .nav-right {
         width: 100%;
-        gap: 0.5rem;
     }
 
-    .nav-right {
-        margin-top: 1rem;
+    .nav-menu {
+        flex-direction: column;
         width: 100%;
     }
 
     .dropdown-menu {
         position: static;
-        box-shadow: none;
         width: 100%;
-    }
-
-    .nav-link {
-        display: block;
-        width: 100%;
-        text-align: center;
-    }
-
-    body {
-        font-size: 14px;
-    }
-
-    h1 { font-size: 28px; }
-    h2 { font-size: 24px; }
-    h3 { font-size: 20px; }
-
-    .content {
-        padding: 1rem;
-    }
-
-    .btn, button, [type="submit"] {
-        width: 100%;
-        margin-bottom: 0.5rem;
     }
 }
 
@@ -686,4 +676,40 @@ span {
   box-shadow: 0px 0px 23px 1px #2423213d;
   padding: 5px 10px;
   margin: 5px 0px;
+}
+
+/* Global Form Styles */
+.form-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--charcoal-gray);
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--deep-blue);
+    box-shadow: 0 0 0 2px rgba(47, 92, 143, 0.1);
 }
