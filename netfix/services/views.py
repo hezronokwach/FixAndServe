@@ -1,39 +1,35 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 import logging
-from django.conf import settings  # Add this import
+from django.conf import settings
 from django.contrib import messages
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
 from users.models import Company, Customer, User
-
 from .models import Service, ServiceRequest
 from .forms import CreateNewService, RequestServiceForm
 
 
 def service_list(request):
+    """Public view - anyone can see service listings"""
     logger.debug("Entering service_list view")
     
     try:
         services = Service.objects.all().order_by('-date')
         logger.debug(f"Found {services.count()} total services")
         
-        # Log each service for debugging
-        for service in services:
-            logger.debug(f"Service: {service.name} (ID: {service.id})")
-            
         paginator = Paginator(services, 9)
         page = request.GET.get('page')
         services = paginator.get_page(page)
         
         context = {
             'services': services,
-            'debug': True  # Simplified debug flag
+            'debug': True
         }
         
         return render(request, 'services/list.html', context)
@@ -45,13 +41,21 @@ def service_list(request):
 
 
 def index(request, id):
-    service = Service.objects.get(id=id)
+    """Public view - anyone can see individual service details"""
+    service = get_object_or_404(Service, id=id)
     return render(request, 'services/single_service.html', {'service': service})
 
 
 @login_required
 def create(request):
+    """Protected view - only logged in companies can create services"""
     logger.debug("Entering create service view")
+    
+    # Check if user is a company
+    if not hasattr(request.user, 'company'):
+        messages.error(request, "Only companies can create services")
+        return redirect('service_list')
+        
     if request.method == 'POST':
         form = CreateNewService(request.POST)
         company = request.user.company
@@ -73,22 +77,23 @@ def create(request):
         form = CreateNewService()
     return render(request, 'services/create.html', {'form': form})
 
+
 def service_field(request, field):
-    # search for the service present in the url
+    """Public view - anyone can see services by field"""
     field = field.replace('-', ' ').title()
-    services = Service.objects.filter(
-        field=field)
+    services = Service.objects.filter(field=field)
     return render(request, 'services/field.html', {'services': services, 'field': field})
 
 
 @login_required
 def request_service(request, id):
-    if not hasattr(request.user, 'customer'):
-        messages.error(request, "Only customers can request services")
+    """Protected view - only logged in customers can request services"""
+    if not (request.user.is_authenticated and hasattr(request.user, 'customer')):
+        messages.error(request, "Only logged in customers can request services")
         return redirect('service_list')
     
     try:
-        service = Service.objects.get(id=id)
+        service = get_object_or_404(Service, id=id)
         
         if request.method == 'POST':
             form = RequestServiceForm(request.POST)
@@ -109,15 +114,12 @@ def request_service(request, id):
                 return redirect('service_list')
         else:
             form = RequestServiceForm()
-        
+            
         return render(request, 'services/request_service.html', {
             'form': form,
             'service': service
         })
         
-    except Service.DoesNotExist:
-        messages.error(request, "Service not found")
-        return redirect('service_list')
     except Exception as e:
         logger.error(f"Error in request_service: {str(e)}")
         messages.error(request, "An error occurred while processing your request")

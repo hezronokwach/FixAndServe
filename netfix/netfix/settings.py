@@ -29,6 +29,10 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'users.User'
 
+# Login settings
+LOGIN_URL = 'login_user'  # URL where users will be redirected to log in
+LOGIN_REDIRECT_URL = 'main:home'  # URL to redirect after successful login
+
 # Application definition
 
 INSTALLED_APPS = [

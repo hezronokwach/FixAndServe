@@ -9,7 +9,15 @@
     </div>
     <h3>{{service.field}}</h3>
     <p style="text-align: left;">{{service.description}}</p>
-    {% if request.user.is_customer %}
-        <a href="/services/{{service.id}}/request_service/" class="like_button">Request Service</a>
+    {% if request.user.is_authenticated %}
+        {% if request.user.is_customer %}
+            <a href="/services/{{service.id}}/request_service/" class="like_button">Request Service</a>
+        {% else %}
+            <div class="alert alert-warning">
+                Only customers can request services. Please register as a customer to request services.
+            </div>
+        {% endif %}
+    {% else %}
+        <a href="{% url 'login_user' %}?next=/services/{{service.id}}/request_service/" class="like_button">Request Service</a>
     {% endif %}
 {% endblock %}

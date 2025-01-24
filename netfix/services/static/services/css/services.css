@@ -11,7 +11,7 @@
     margin-bottom: 30px;
 }
 
-.create-service-btn {
+.create-service-btn, .request-btn {
     display: inline-block;
     padding: 10px 20px;
     background: #ec2f00;
@@ -21,8 +21,15 @@
     transition: background 0.3s;
 }
 
-.create-service-btn:hover {
+.create-service-btn:hover, .request-btn:hover {
     background: #d42a00;
+    color: white;
+    text-decoration: none;
+}
+
+.request-btn {
+    padding: 8px 16px;
+    font-size: 0.9em;
 }
 
 .services-grid {
@@ -147,4 +154,16 @@
     height: 1px;
     background: #eee;
     margin: 0;
+}
+
+.alert {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
 }
