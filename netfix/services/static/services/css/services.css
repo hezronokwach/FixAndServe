@@ -1,5 +1,5 @@
 .services-container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -8,14 +8,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
     flex-direction: column;
     align-items: flex-start;
 }
 
+.services-header h1 {
+    color: #f9f8fd;
+    font-size: 2rem;
+}
+
 .create-service-btn, .request-btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 0.8rem 1.5rem;
     background: #ec2f00;
     color: white;
     text-decoration: none;
@@ -30,8 +35,14 @@
 }
 
 .request-btn {
-    padding: 6px 12px;
-    font-size: 0.8em;
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    align-self: flex-start;
+    transition: background-color 0.3s ease;
 }
 
 .services-grid {
@@ -102,6 +113,9 @@
 }
 
 .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -109,17 +123,23 @@
 }
 
 .service-item {
-    padding: 15px 0;
+    background-color: #646464;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 35px -20px #ec2f00;
 }
 
 .service-details {
     display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
     align-items: center;
     gap: 20px;
 }
 
 .service-name {
-    color: #ec2f00;
+    color: #f9f8fd;
+    font-size: 1.3rem;
     text-decoration: none;
     font-weight: bold;
     font-size: 1.1em;
@@ -130,17 +150,17 @@
 }
 
 .field {
-    color: #666;
+    color: #e7e7e7;
 }
 
 .price {
     font-weight: bold;
-    color: #333;
+    color: #e7e7e7;
 }
 
 .provider {
     margin-left: auto;
-    color: #666;
+    color: #e7e7e7;
 }
 
 .company-link {
@@ -154,8 +174,8 @@
 
 .divider {
     height: 1px;
-    background: #eee;
-    margin: 0;
+    background-color: #646464;
+    margin: 1rem 0;
 }
 
 .alert {
@@ -205,5 +225,78 @@
 @media (max-width: 480px) {
     .site_title {
         font-size: 2em; /* Even smaller size for very narrow screens */
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.service_info_header {
+    width: 100%;
+    padding: 2rem;
+    margin: 1rem 0;
+    background-color: #646464;
+    border-radius: 10px;
+    box-shadow: 0px 0px 35px -20px #ec2f00;
+    word-wrap: break-word;
+}
+
+@media screen and (max-width: 768px) {
+    .service_info_header {
+        padding: 1.5rem;
+    }
+    
+    .service_info_header h1 {
+        font-size: 1.5rem;
+        word-wrap: break-word;
+    }
+
+    .services-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .services-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .service-name {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .service_info_header {
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+    
+    .service_info_header h1 {
+        font-size: 1.2rem;
+    }
+
+    .services-container {
+        padding: 10px;
+    }
+
+    .service-item {
+        padding: 1rem;
+    }
+
+    .request-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .service-details {
+        gap: 0.5rem;
     }
 }
