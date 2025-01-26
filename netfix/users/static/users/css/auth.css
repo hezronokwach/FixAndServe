@@ -1,4 +1,9 @@
 /* Auth Pages Styling */
+body {
+    background-color: #1a1a1a; /* Dark background */
+    color: #f9f8fd; /* Light text */
+}
+
 .auth-container {
     max-width: 90%; /* Use percentage for responsiveness */
     width: 500px; /* Maintain max width for larger screens */

@@ -8,25 +8,27 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
-<p class="choice_text">Choose whether you want to be a customer or a company</p>
+<div class="register-container">
+    <p class="choice_text">Choose whether you want to be a customer or a company</p>
 
-<div style="margin-top: 70px;">
-    <div style="margin-left: 50px" class="choice">
-        <div class="company img" id="company">
-            <a href="{% url 'register_company' %}">
-                <img src="{% static 'css/company.png' %}" alt="company">
-            </a>
+    <div class="choices-wrapper">
+        <div class="choice">
+            <div class="company img" id="company">
+                <a href="{% url 'register_company' %}">
+                    <img src="{% static 'css/company.png' %}" alt="company">
+                </a>
+            </div>
+            <p class="label_images">Company</p>
         </div>
-        <p class="label_images">Company</p>
-    </div>
 
-    <div style="float: right; margin-right: 50px;" class="choice">
-        <div class="img" id="customer">
-            <a href="{% url 'register_customer' %}">
-                <img src="{% static 'css/customer.png' %}" alt="customer">
-            </a>
+        <div class="choice">
+            <div class="img" id="customer">
+                <a href="{% url 'register_customer' %}">
+                    <img src="{% static 'css/cus3.jpg' %}" alt="customer">
+                </a>
+            </div>
+            <p class="label_images">Customer</p>  
         </div>
-        <p>Customer</p>
     </div>
 </div>
 {% endblock %}
