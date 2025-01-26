@@ -188,3 +188,22 @@
     width: 100%; /* Ensure full width */
     padding: 0 10px; /* Add padding to avoid overlap */
 }
+
+.site_title {
+    font-size: 2.5em; /* Default size */
+    margin: 0;
+    padding: 10px 0;
+}
+
+@media (max-width: 768px) {
+    .site_title {
+        font-size: 3em; /* Smaller size for narrow screens */
+        padding: 5px 0; /* Adjust padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .site_title {
+        font-size: 2em; /* Even smaller size for very narrow screens */
+    }
+}
