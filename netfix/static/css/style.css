@@ -30,11 +30,11 @@ body {
 
 /* Navbar and Dropdown Styles */
 .navbar {
-    background-color: #e7e7e7;
-    padding: 0.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #e7e7e7;
+    padding: 0.5rem 2rem;
     position: sticky;
     top: 15px;
     width: 95%;
@@ -43,6 +43,16 @@ body {
     border: 2px solid white;
     border-radius: 30px;
     box-shadow: inset 1px -1px 10px rgb(116, 116, 116);
+    animation: slide-in 1s ease-out;
+}
+
+.navbar ul {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    margin: 0;
+    padding: 0 30px;
+    list-style-type: none;
 }
 
 .nav-left, .nav-right {
@@ -50,13 +60,18 @@ body {
     align-items: center;
 }
 
+.nav-left {
+    justify-content: flex-start;
+}
+
+.nav-right {
+    justify-content: flex-end;
+}
+
 .nav-menu {
-    display: flex;
-    align-items: center;
     list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 1.5rem;
+    display: flex;
+    gap: 1rem;
 }
 
 .nav-link {
@@ -124,16 +139,24 @@ body {
 .btn-login:hover {
     background: #ec4138;
     color: #f9f8fd;
+    border: 2px solid transparent;
 }
 
 .btn-signup {
-    background: #ec2f00;
-    color: #f9f8fd;
+    background: transparent;
+    border: 2px solid #ec2f00;
+    color: #ec2f00;
     margin-left: 1rem;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .btn-signup:hover {
     background: #ec4138;
+    color: #f9f8fd;
+    border: 2px solid transparent;
 }
 
 .btn-logout {
@@ -314,6 +337,50 @@ nav a:hover {
     }
 }
 
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-links {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-links.active {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-links .nav-link {
+        padding: 8px 12px; /* Smaller padding for buttons */
+        font-size: 14px; /* Smaller font size */
+        cursor: pointer; /* Change cursor to pointer */
+        margin: 0; /* Remove margin to align left */
+    }
+    .navbar-links {
+        align-items: flex-start; /* Align items to the left */
+    }
+    .dropdown-menu {
+        display: none; /* Hide dropdown by default */
+    }
+    .dropdown.active .dropdown-menu {
+        display: block; /* Show dropdown when active */
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage-content {
+        padding: 20px;
+        font-size: 14px;
+    }
+}
+
 body {
   background: #292929;
   font-family: 'Lexend Exa', sans-serif;
@@ -413,27 +480,6 @@ button:hover {
 
 /* ======================================== Navbar ============================================== */
 
-.navbar {
-  position: sticky;
-  top: 15px;
-  box-shadow: inset 1px -1px 10px rgb(116, 116, 116);
-  border: 2px solid white;
-  border-radius: 30px;
-  animation: slide-in 1s ease-out;
-  background-color: #e7e7e7;
-  width: 95%;
-  margin: 0 auto;
-  margin-bottom: 30px;
-}
-
-.navbar ul {
-  position: relative;
-  display: flex;
-  flex: 1 1 auto;
-  margin: 0;
-  padding: 0 30px;
-  list-style-type: none;
-}
 .navbar ul li:not(:last-child) {
   margin-right: 40px;
 }
@@ -491,6 +537,36 @@ button:hover {
   right: 0;
   position: absolute;
   margin-right: 20px;
+}
+
+.navbar-toggle {
+    display: none; /* Hide toggle button by default */
+}
+
+.navbar-links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+    .navbar-toggle {
+        display: block; /* Show toggle button in mobile view */
+    }
+    .navbar-links {
+        flex-direction: column;
+        display: none; /* Hide links by default in mobile view */
+    }
+    .navbar-links.active {
+        display: flex; /* Show links when active */
+    }
+  
+    .dropdown:hover .dropdown-menu {
+        display: block; /* Show dropdown on hover */
+    }
 }
 
 /* ============================================================================================== */

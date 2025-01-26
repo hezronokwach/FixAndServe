@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
-{% block title %}NetFix{% endblock %}
+{% block title %}<p class="site_title">NetFix</p>{% endblock %}
 
 {% block extra_head %}
 <link rel="stylesheet" type="text/css" href="{% static 'services/css/services.css' %}">
@@ -12,10 +12,10 @@
     <div class="services-header">
         <p class="site_title">NetFix</p>
         <img class="home_logo" src="{% static 'css/logo.png' %}" alt="logo">
+        <h2>Most Requested Services</h2>
     </div>
 
     <div class="services-list">
-        <h2>Most Requested Services</h2>
         {% if popular_services %}
             {% for service in popular_services %}
                 <div class="service-item">
