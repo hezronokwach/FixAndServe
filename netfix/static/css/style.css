@@ -84,8 +84,8 @@ body {
 }
 
 .nav-link:hover {
-    background: #ec4138;
-    color: #f9f8fd;
+    background-color: var(--warm-orange);
+    color: white;
 }
 
 /* Dropdown styles */
@@ -123,49 +123,17 @@ body {
 }
 
 /* Auth button styles */
-.btn-login, .btn-signup, .btn-logout {
-    padding: 8px 20px;
-    border-radius: 5px;
-    font-weight: 500;
-    transition: all 0.3s ease;
+.btn-logout, .btn-login, .btn-signup {
+    background-color: var(--warm-orange);
+    color: white;
+    padding: 0.75rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
-.btn-login {
-    background: transparent;
-    border: 2px solid #ec2f00;
-    color: #ec2f00;
-}
-
-.btn-login:hover {
-    background: #ec4138;
-    color: #f9f8fd;
-    border: 2px solid transparent;
-}
-
-.btn-signup {
-    background: transparent;
-    border: 2px solid #ec2f00;
-    color: #ec2f00;
-    margin-left: 1rem;
-    padding: 8px 20px;
-    border-radius: 5px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.btn-signup:hover {
-    background: #ec4138;
-    color: #f9f8fd;
-    border: 2px solid transparent;
-}
-
-.btn-logout {
-    background: #ec2f00;
-    color: #f9f8fd;
-}
-
-.btn-logout:hover {
-    background: #ec4138;
+.btn-logout:hover, .btn-login:hover, .btn-signup:hover {
+    background-color: var(--deep-blue);
 }
 
 /* Typography */
@@ -515,15 +483,13 @@ button:hover {
   line-height: 1.7;
 }
 
-.navbar ul li:hover {
+/* .navbar ul li:hover {
   background: #ec4138;
   border: 2px solid #f05749;
   border-right: 2px solid #e02a21;
   border-bottom: 2px solid #e02a21;
-}
-.navbar ul li:hover a {
-  color: #f9f8fd;
-}
+} */
+
 .navbar ul li:hover ul {
   visibility: visible;
   opacity: 1;

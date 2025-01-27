@@ -322,6 +322,29 @@ body {
     display: block;
 }
 
+.logout-heading {
+    font-family: var(--heading-font);
+    font-size: 2rem;
+    color: var(--charcoal-gray);
+    text-align: center;
+}
+
+.return-home {
+    display: block;
+    text-align: center;
+    margin-top: 60px;
+    background-color: var(--warm-orange);
+    color: white;
+    padding: 0.75rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.return-home:hover {
+    background-color: var(--deep-blue);
+}
+
 @media screen and (max-width: 768px) {
     .profile-container {
         margin: 1rem;

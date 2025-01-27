@@ -19,30 +19,22 @@
 }
 
 .create-service-btn, .request-btn {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background: #ec2f00;
+    background-color: var(--warm-orange);
     color: white;
+    padding: 0.75rem;
+    border-radius: 4px;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .create-service-btn:hover, .request-btn:hover {
-    background: #d42a00;
-    color: white;
-    text-decoration: none;
+    background-color: var(--deep-blue);
 }
 
 .request-btn {
     display: inline-block;
     padding: 0.8rem 1.5rem;
-    background-color: #3498db;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
     align-self: flex-start;
-    transition: background-color 0.3s ease;
 }
 
 .services-grid {
