@@ -199,21 +199,19 @@ body {
 
 /* Profile Styles */
 .profile-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 90%;
+    width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
     background-color: #424242;
     border-radius: 10px;
-    box-shadow: 0px 0px 35px -20px #ec2f00;
 }
 
 .profile-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid #555;
 }
@@ -366,7 +364,7 @@ body {
     }
 
     .profile-header {
-        text-align: center;
+        flex-direction: column;
     }
 
     .user-info h1 {
@@ -397,5 +395,8 @@ body {
 
     .service-details {
         gap: 0.5rem;
+    }
+    .service-name {
+        font-size: 1.1rem;
     }
 }

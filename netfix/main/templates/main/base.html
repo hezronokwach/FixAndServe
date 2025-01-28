@@ -18,6 +18,11 @@
   </head>
   <body>
     <nav class="navbar">
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
         <div class="nav-left">
             <ul class="nav-menu">
                 <li><a href="/" class="nav-link">Home</a></li>
@@ -60,6 +65,13 @@
         const links = document.querySelector('.navbar-links');
         links.classList.toggle('active');
     }
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelectorAll(".nav-menu");
+    
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.forEach(menu => menu.classList.toggle("active"));
+    });
     </script>
     <div class='content'>
       {% if messages %}
