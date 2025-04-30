@@ -4,3 +4,4 @@ lib
 lib64
 *.cfg
 *.sqlite3
+.qodo

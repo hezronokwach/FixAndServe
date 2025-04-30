@@ -72,7 +72,7 @@ def create(request):
                 field=form.cleaned_data['field'],
             )
             service.save()
-            return redirect('service_list')
+            return redirect('services_list')
     else:
         form = CreateNewService()
     return render(request, 'services/create.html', {'form': form})
@@ -111,7 +111,7 @@ def request_service(request, id):
                 service.save()
                 
                 messages.success(request, f"Service request for {service.name} has been submitted")
-                return redirect('service_list')
+                return redirect('services_list')
         else:
             form = RequestServiceForm()
             
@@ -123,4 +123,4 @@ def request_service(request, id):
     except Exception as e:
         logger.error(f"Error in request_service: {str(e)}")
         messages.error(request, "An error occurred while processing your request")
-        return redirect('service_list')
+        return redirect('services_list')
